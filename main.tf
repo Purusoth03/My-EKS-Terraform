@@ -60,7 +60,7 @@ resource "aws_security_group" "MY_EKS_sg" {
   }
 
   tags = {
-    Name = "MY_EKS-cluster-sg"
+    Name = "MY_EKS-sg"
   }
 }
 
@@ -92,13 +92,13 @@ resource "aws_eks_cluster" "MY_EKS" {
 
   vpc_config {
     subnet_ids         = aws_subnet.MY_EKS_subnet[*].id
-    security_group_ids = [aws_security_group.MY_EKS_cluster_sg.id]
+    security_group_ids = [aws_security_group.MY_EKS_sg.id]
   }
 }
 
 resource "aws_eks_node_group" "MY_EKS" {
   cluster_name    = aws_eks_cluster.MY_EKS.name
-  node_group_name = "devopsshack-node-group"
+  node_group_name = "MY_EKS-node-group"
   node_role_arn   = aws_iam_role.MY_EKS_node_group_role.arn
   subnet_ids      = aws_subnet.MY_EKS_subnet[*].id
 
@@ -117,7 +117,7 @@ resource "aws_eks_node_group" "MY_EKS" {
 }
 
 resource "aws_iam_role" "MY_EKS_cluster_role" {
-  name = "devopsshack-cluster-role"
+  name = "MY_EKS-role"
 
   assume_role_policy = <<EOF
 {
