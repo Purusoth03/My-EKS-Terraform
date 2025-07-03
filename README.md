@@ -5,4 +5,7 @@
 4. terraform apply --auto-approve
 5. terraform destroy
 
+
+aws eks update-kubeconfig --region ap-south-1 --name eks-cluster
+
    
