@@ -1,7 +1,7 @@
 # My-EKS-Terraform
 Terraform Installation
 ======================
-sudo snap install terraform --classic
+sudo snap install terraform kubectl --classic
 1. terraform init
 2. terraform plan
 3. terraform validate
